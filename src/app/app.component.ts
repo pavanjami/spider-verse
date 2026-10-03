@@ -4,6 +4,7 @@ import { Component, HostListener } from '@angular/core';
 export class AppComponent {
   cursorX=0; cursorY=0; moved=false; scrollProgress=0;
   @HostListener('document:mousemove',['$event']) onMove(event:MouseEvent){this.cursorX=event.clientX;this.cursorY=event.clientY;this.moved=true;}
+  goToChapter(id:string){document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});}
   @HostListener('window:scroll') onScroll(){
     const max=document.documentElement.scrollHeight-window.innerHeight;
     this.scrollProgress=max>0?Math.min(1,Math.max(0,window.scrollY/max)):0;
